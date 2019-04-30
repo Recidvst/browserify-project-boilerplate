@@ -1,0 +1,31 @@
+{
+  "name": "browserify-test",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "styles": "node-sass src -o build/css",
+    "js": "browserify -t [ babelify --presets [ @babel/preset-env ] ] src/test.js -o build/app.js",
+    "compress": "uglifyjs build/app.js --output build/app.min.js && cleancss build/css/test.css -o build/css/test.min.css",
+    "dev": "watchify -t [ babelify --presets [ @babel/preset-env ] ] src/test.js -o build/app.js -v",
+    "serve": "beefy src/test.js --browserify browserify --live",
+    "build": "npm run styles && npm run js && npm run compress"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-core": "^6.26.3",
+    "babelify": "^10.0.0",
+    "beefy": "^2.1.8",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.12.0",
+    "uglify-js": "^3.5.9",
+    "watchify": "^3.11.1"
+  }
+}
